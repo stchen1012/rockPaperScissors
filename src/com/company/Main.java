@@ -3,6 +3,7 @@ package com.company;
 import java.sql.SQLOutput;
 import java.util.Scanner;
 import com.company.Player;
+import com.company.InitiatePlayer;
 
 public class Main {
 
@@ -18,10 +19,10 @@ public class Main {
         if (competitor.equals("1") || competitor.equals("play another player")) {
             System.out.println("What is your name Player 1?");
             String playerName = scanner.nextLine();
-            Player player1 = new Player(playerName, "human", "TBD", 0);
+            Player player1 = new InitiatePlayer(playerName, "human", "TBD", 0);
             System.out.println("What is your name Player 2?");
             playerName = scanner.nextLine();
-            Player player2 = new Player(playerName, "human", "TBD", 0);
+            Player player2 = new InitiatePlayer(playerName, "human", "TBD", 0);
             while (gamePlay == true) {
                 // this will check player input & break if input is not rock, paper, scissors
                 if (tryCatchCheck(player1, scanner) == false) {
@@ -46,12 +47,12 @@ public class Main {
         } else if (competitor.equals("2") || competitor.equals("play against the computer")) {
             System.out.println("Good luck  - you will now play the computer. What is your name Player 1?");
             String playerName = scanner.nextLine();
-            Player player1 = new Player(playerName, "human","TBD", 0);
+            Player player1 = new InitiatePlayer(playerName, "human","TBD", 0);
+            Player computer = new InitiatePlayer("computer", "robot", "TBD",0);
             while (gamePlay == true) {
                 if (tryCatchCheck(player1, scanner) == false) {
                     break;
                 }
-                Player computer = new Player("Computer", "robot", "TBD",0);
                 computer.setUserChoice(computer.computerGenerated());
                 String winner = checkWin(player1, computer, player1, computer);
                 increment(winner, player1, computer);
@@ -66,6 +67,8 @@ public class Main {
                     break;
                 }
             }
+        } else {
+            System.out.println("Invalid input, please restart game");
         }
 
     }
@@ -113,7 +116,6 @@ public class Main {
         } catch (java.lang.Error e) {
             //e.printStackTrace();
             System.out.println("Please restart game, you've enter a bad input");
-            //break;
             return false;
         }
         return true;

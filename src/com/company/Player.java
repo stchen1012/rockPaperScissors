@@ -8,15 +8,11 @@ import java.util.Random;
 import java.util.stream.IntStream;
 
 
-public class Player {
+public abstract class Player {
     private String name;
     private String type;
     private String userChoice;
     private int winCount;
-
-    Player() {
-
-    }
 
     Player(String name, String type, String userChoice, int winCount) {
         this.name = name;
@@ -57,21 +53,8 @@ public class Player {
         this.winCount = winCount;
     }
 
-    public String computerGenerated() {
-        String arr[] = {"rock", "paper", "scissors"};
-        Random random  = new Random();
-        int randomNumber = random.nextInt(arr.length);
-        System.out.println(arr[randomNumber]);
-        return arr[randomNumber];
+    public abstract String computerGenerated();
 
-//        List<String> randomValue = new ArrayList<String>();
-//        randomValue.add("rock");
-//        randomValue.add("paper");
-//        randomValue.add("scissors");
-//        Random random = new Random();
-//        IntStream.range(0,1).forEach(a -> System.out.println(randomValue.get(random.nextInt(randomValue.size()))));
-//        //return randomValue.get(random.nextInt(randomValue.size()));
-    }
 
     public int winCount() {
         winCount++;
